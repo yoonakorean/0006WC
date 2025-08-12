@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>0-2 單字聽音辨義測驗</title>
+  <title>0-6 單字聽力測驗</title>
   <style>
     body {
       font-family: sans-serif;
@@ -70,8 +70,8 @@
 </head>
 <body>
   <img src="logo.png" alt="Logo" id="logo" />
-  <div id="game-title">0-2 單字聽音辨義測驗</div>
-  <p id="question-number">第 1 題 / 共 16 題</p>
+  <div id="game-title">0-6 單字聽力測驗</div>
+  <p id="question-number">第 1 題 / 共 11 題</p>
   <p id="timer">剩餘時間：-- 秒</p>
   <audio id="audio" controls></audio>
   <div id="choices"></div>
@@ -92,26 +92,20 @@
   </div>
 
   <script>
-    const gameTitle = "0-2 單字聽音辨義測驗";
+    const gameTitle = "0-6 單字聽力測驗";
 
     const questions = [
-     { "word": "國家", "korean": "나라", "audio": "audio/000201W.mp3", "choices": ["國家", "鈴鐺", "海"] },
-     { "word": "樹", "korean": "나무", "audio": "audio/000202W.mp3", "choices": ["雨", "樹", "火"] },
-     { "word": "年齡", "korean": "나이", "audio": "audio/000203W.mp3", "choices": ["國家", "年齡", "名字"] },
-     { "word": "姊姊", "korean": "누나", "audio": "audio/000204W.mp3", "choices": ["哥哥", "姊姊", "弟弟"] },
-     { "word": "謠言", "korean": "루머", "audio": "audio/000205W.mp3", "choices": ["謠言", "房間", "旅館"] },
-     { "word": "頭", "korean": "머리", "audio": "audio/000206W.mp3", "choices": ["髮型", "頭", "臉"] },
-     { "word": "免費", "korean": "무료", "audio": "audio/000207W.mp3", "choices": ["免費", "不開心", "沒有人"] },
-     { "word": "不", "korean": "아니요", "audio": "audio/000208W.mp3", "choices": ["對不起", "不", "謝謝"] },
-     { "word": "哪個", "korean": "어느", "audio": "audio/000209W.mp3", "choices": ["哪個", "誰的", "幾個"] },
-     { "word": "母親", "korean": "어머니", "audio": "audio/000210W.mp3", "choices": ["母親", "女兒", "祖母"] },
-     { "word": "下午", "korean": "오후", "audio": "audio/000211W.mp3", "choices": ["上午", "中午", "下午"] },
-     { "word": "額頭", "korean": "이마", "audio": "audio/000212W.mp3", "choices": ["額頭", "臉頰", "下巴"] },
-     { "word": "阿姨", "korean": "이모", "audio": "audio/000213W.mp3", "choices": ["阿姨", "姑姑", "媽媽"] },
-     { "word": "河馬", "korean": "하마", "audio": "audio/000214W.mp3", "choices": ["河馬", "鯨魚", "青蛙"] },
-     { "word": "腰", "korean": "허리", "audio": "audio/000215W.mp3", "choices": ["脖子", "腰", "臀部"] },
-     { "word": "舌頭", "korean": "혀", "audio": "audio/000216W.mp3", "choices": ["嘴唇", "牙齒", "舌頭"] }
-
+  { "word": "부모", "korean": "父母", "audio": "audio/000601W.mp3", "choices": ["부모", "부모우", "부오"] },
+  { "word": "유부", "korean": "油豆腐", "audio": "audio/000602W.mp3", "choices": ["유부", "우부", "유푸"] },
+  { "word": "바다", "korean": "海", "audio": "audio/000603W.mp3", "choices": ["바다", "파다", "빠다"] },
+  { "word": "여보", "korean": "親愛的", "audio": "audio/000604W.mp3", "choices": ["여보", "요보", "여부"] },
+  { "word": "파리", "korean": "蒼蠅", "audio": "audio/000605W.mp3", "choices": ["파리", "바리", "파니"] },
+  { "word": "아파트", "korean": "公寓", "audio": "audio/000606W.mp3", "choices": ["아파트", "아파트", "아파르트"] },
+  { "word": "포도", "korean": "葡萄", "audio": "audio/000607W.mp3", "choices": ["포도", "푸도", "포루"] },
+  { "word": "피부", "korean": "皮膚", "audio": "audio/000608W.mp3", "choices": ["피부", "비부", "피보"] },
+  { "word": "아빠", "korean": "爸爸", "audio": "audio/000609W.mp3", "choices": ["아빠", "아파", "아뻐"] },
+  { "word": "뿌리", "korean": "根", "audio": "audio/000610W.mp3", "choices": ["뿌리", "푸리", "쁘리"] },
+  { "word": "뽀뽀", "korean": "親親", "audio": "audio/000611W.mp3", "choices": ["뽀뽀", "보보", "뽀포"] }
 
     ];
 
@@ -119,7 +113,7 @@
     let current = 0;
     let correct = 0;
     let timerId;
-    const totalSeconds = shuffledQuestions.length * 5;
+    const totalSeconds = shuffledQuestions.length * 8;
     let timeLeft = totalSeconds;
 
     const audio = document.getElementById("audio");
@@ -161,10 +155,10 @@
 
           if (choice === correctAnswer) {
             correct++;
-            feedback.textContent = `✅ 正確！韓文：${chinese}`;
+            feedback.textContent = `✅ 正確！中文：${chinese}`;
             feedback.style.color = "green";
           } else {
-            feedback.textContent = `❌ 錯誤。正確答案是 "${correctAnswer}"（韓文：${chinese}）`;
+            feedback.textContent = `❌ 錯誤。正確答案是 "${correctAnswer}"（中文：${chinese}）`;
             feedback.style.color = "red";
           }
 
